@@ -1,2 +1,2 @@
 # meteor-wikipedia
-Fetch Wikipedia content (https://atmospherejs.com/kepler/wikipedia)
+Meteor package for fetching Wikipedia content (https://atmospherejs.com/kepler/wikipedia).
