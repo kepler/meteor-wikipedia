@@ -1,5 +1,5 @@
 Package.describe({
-    name: 'wikipedia',
+    name: 'kepler:wikipedia',
     summary: 'Fetch the content of a Wikipedia page.',
     version: '0.0.1',
     git: 'https://github.com/kepler/meteor-wikipedia.git'

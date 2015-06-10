@@ -8,7 +8,7 @@ var cheerio = Npm.require('cheerio'),
     request = Npm.require('request'),
     nlp = Npm.require('nlp_compromise');
 
-WikiFetch = function (params) {
+Wikipedia = function (params) {
     options = _.chain(params).pick(
         'articlePrefix',
         'removeFootnotes',
@@ -25,7 +25,7 @@ WikiFetch = function (params) {
     _.extend(this, options);
 };
 
-WikiFetch.prototype.fetch = function (articleName, callback) {
+Wikipedia.prototype.fetch = function (articleName, callback) {
     var _this = this;
 
     this.loadArticle(articleName, function (err, article) {
@@ -42,11 +42,11 @@ WikiFetch.prototype.fetch = function (articleName, callback) {
     });
 };
 
-WikiFetch.prototype.parseTitle = function (article, parsedArticle) {
+Wikipedia.prototype.parseTitle = function (article, parsedArticle) {
     parsedArticle.title = article('#firstHeading').text();
 };
 
-WikiFetch.prototype.parseLinks = function (article, parsedArticle) {
+Wikipedia.prototype.parseLinks = function (article, parsedArticle) {
 
     parsedArticle.links = {};
 
@@ -74,7 +74,7 @@ WikiFetch.prototype.parseLinks = function (article, parsedArticle) {
     });
 };
 
-WikiFetch.prototype.parseSections = function (article, parsedArticle) {
+Wikipedia.prototype.parseSections = function (article, parsedArticle) {
     var currentHeadline = parsedArticle.title;
 
     parsedArticle.sections = {};
@@ -108,7 +108,7 @@ WikiFetch.prototype.parseSections = function (article, parsedArticle) {
     });
 };
 
-WikiFetch.prototype.parseText = function (parsedArticle) {
+Wikipedia.prototype.parseText = function (parsedArticle) {
     var self = this;
     var articleText = [];
     var articleSentences = [];
@@ -150,7 +150,7 @@ WikiFetch.prototype.parseText = function (parsedArticle) {
     parsedArticle.sentences = _.flatten(articleSentences);
 };
 
-WikiFetch.prototype.loadArticle = function (articleName, callback) {
+Wikipedia.prototype.loadArticle = function (articleName, callback) {
     request({
         url: this.articlePrefix + articleName
     }, function (err, res, body) {
